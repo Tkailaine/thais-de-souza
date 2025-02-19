@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .blog-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .blog-title {
+            font-size: 1.2rem;
+            color: #333;
+            margin: 15px 0 10px;
+        }
+
+        .blog-summary {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            margin-top: auto;
+            align-self: flex-start;
+        }
+
+        .pagination {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            margin: 0 10px;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        .pagination a:hover {
+            text-decoration: underline;
+        }
+
+        .news-page {
+            display: none;
+        }
+
+        .news-page h1 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .news-page p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn-inicio{
+            display: block;
+            border: none;
+            width: 120px;
+            height: 30px;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.2em;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.178);
+            background-color: #007BFF;
+            margin: 50px auto;
+            cursor: pointer;
+        }
+
+        .btn-inicio:hover{
+            background-color: #022d5c;
+            transition-duration: 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Notícias</h1><div id="news-container" class="blog-grid">
+        <!-- Grid de notícias --><div class="blog-card" data-title="Câmara aprova projeto que impede penhora de bens essenciais para pessoas com deficiência" 
+                 data-content="
+                <article>
+                <p>A Câmara dos Deputados aprovou, nesta terça-feira (18), o Projeto de Lei 3987/2023, que proíbe a penhora de bens essenciais para garantir a dignidade das pessoas com deficiência. O projeto, de autoria do deputado Duarte Jr. (PSB-MA), modifica o Código de Processo Civil (CPC) e assegura a proteção de veículos, equipamentos e outros bens considerados indispensáveis, mesmo quando registrados no nome do representante legal da pessoa com deficiência.</p>
+                 
+             
+                 <p>A relatora da matéria, deputada Geovania de Sá (PSDB-SC), apresentou um substitutivo que manteve a maior parte do texto elaborado pelo deputado Márcio Jerry (PCdoB-MA) na Comissão de Defesa dos Direitos das Pessoas com Deficiência. No entanto, uma alteração importante foi feita: o novo texto exclui a previsão de que a proteção se estenda a bens registrados em nome de qualquer membro da entidade familiar da pessoa com deficiência.</p>
+                 
+                 <p>Segundo a relatora, essa ampliação poderia abrir margem para fraudes à execução, permitindo que pessoas sem deficiência registrassem bens em nome de familiares apenas para evitar a penhora. “A ideia é garantir a proteção da dignidade das pessoas com deficiência sem criar brechas para que a legislação seja utilizada de maneira indevida”, explicou Geovania de Sá.</p>
+                 
+                <p>Com a aprovação na Câmara, o projeto segue agora para análise no Senado Federal. Caso seja aprovado e sancionado, passará a valer em todo o território nacional, reforçando a proteção dos direitos das pessoas com deficiência e garantindo sua qualidade de vida sem o risco de perderem bens essenciais por dívidas judiciais.</p>
+                 
+                
+                </article>
+                ">
+                <img src="../imagens/penhorar.jpg" alt="Imagem da notícia">
+                <h2 class="blog-title">Câmara aprova projeto que impede penhora de bens essenciais para pessoas com deficiência</h2>
+                <p class="blog-summary">A proposta protege veículos, equipamentos e outros itens essenciais, mesmo quando registrados em nome do representante legal da pessoa com deficiência. </p>
+                <p class="blog-meta">Fonte: IBDFAM - Instituto Brasileiro de Direito de família - Data: 19/02/2025</p>
+                <a href="#" class="read-more" onclick="openNews(this)">Leia mais</a>
+            </div>
+
+            
+           
+           
+            
+
+            <div class="blog-card" data-title="Tribunal de Justiça de São Paulo nega restituição a mulher vítima de golpe virtual" 
+            data-content="
+        <article>
+            <p>A 38ª Câmara de Direito Privado do Tribunal de Justiça de São Paulo (TJSP) negou o pedido de uma mulher que buscava a restituição de R$ 5 mil perdidos em um golpe cibernético. A vítima realizou a transferência via Pix após visualizar um anúncio de veículo em uma plataforma de vendas online e negociar com os supostos vendedores por meio de um aplicativo de mensagens.</p>
+
+            
+            <p>Após perceber que havia sido enganada e não conseguir mais contato com os anunciantes, a mulher solicitou ao banco a devolução do valor enviado. No entanto, seu pedido foi negado tanto pela instituição financeira quanto pela Justiça.</p>
+
+           <p>Ao julgar o recurso, a desembargadora Silvana Malandrino Mollo afirmou que não houve falha na prestação do serviço bancário. Ela destacou que o banco apenas processou a transferência, sem intermediar a negociação entre as partes. “A modalidade de pagamento Pix não está condicionada à existência de um prévio negócio jurídico, e, não tendo ocorrido sob a intermediação do banco, a instituição financeira não possui meios para constatar eventuais vícios da contratação que originou o pagamento”, pontuou a relatora.</p>
+
+  
+            <p>A decisão foi acompanhada pelos desembargadores Spencer Almeida Ferreira e Anna Paula Dias da Costa, em votação unânime. O entendimento do tribunal reforça a necessidade de cautela por parte dos consumidores ao realizar transações financeiras no ambiente digital.</p>
+
+            <p>O caso foi julgado sob a Apelação nº 1131213-69.2024.8.26.0100.</p>
+
+        </article>
+
+           ">
+                <img src="../imagens/golpe.jpg" alt="Imagem da notícia">
+                <h2 class="blog-title">Tribunal de Justiça de São Paulo nega restituição a mulher vítima de golpe virtual
+
+                </h2>
+                <p class="blog-summary">A consumidora transferiu R$ 5 mil via Pix para a compra de um veículo anunciado em plataforma online, mas descobriu que se tratava de uma fraude. O tribunal entendeu que o banco não teve participação na negociação e que a simples intermediação da transferência não caracteriza falha na prestação de serviço.</p>
+                <p class="blog-meta">Fonte: TJSP - Data: 19/02/2025</p>
+                <a href="#" class="read-more" onclick="openNews(this)">Leia mais</a>
+            </div> 
+            
+            
+            <div class="blog-card" data-title="Justiça de São Paulo reconhece adoção unilateral de padrasto e reforça vínculo afetivo"
+            data-content="
+
+            <article>
+        
+            <p>A Justiça de São Paulo concedeu a um padrasto o direito de adotar unilateralmente sua enteada, formalizando juridicamente o vínculo afetivo construído ao longo dos anos. A decisão foi proferida pela 2ª Vara da Comarca de Espírito Santo do Pinhal, vinculada ao Tribunal de Justiça do Estado de São Paulo (TJSP), e considerou determinantes fatores como a ausência do pai biológico e o desejo da adolescente de ter o padrasto como único pai no registro civil.</p>
+            
+          
+            <p>A sentença baseou-se em estudos sociais e psicológicos que comprovaram a forte relação entre padrasto e enteada. Além disso, o Ministério Público manifestou-se favoravelmente à adoção, e o pai biológico não se opôs ao pedido, facilitando a tramitação do processo.</p>
+            
+            <p>De acordo com o advogado Bruno Freitas, que atuou no caso e integra o Instituto Brasileiro de Direito de Família (IBDFAM), a decisão reforça o reconhecimento legal de vínculos afetivos dentro das novas estruturas familiares. “A sentença reconhece e legaliza uma realidade já existente no convívio familiar. Ela também proporciona segurança jurídica, garantindo direitos sucessórios, previdenciários e familiares à jovem”, afirmou.</p>
+            
+            <h2>Diferença entre adoção unilateral e paternidade socioafetiva</h2>
+          
+            <p>Freitas explicou que a adoção unilateral difere do reconhecimento da paternidade socioafetiva, pois extingue o vínculo com o pai biológico. “Enquanto a paternidade socioafetiva adicionaria o nome do padrasto sem retirar o do genitor biológico, a adoção unilateral substitui completamente esse vínculo, tornando o adotante o único pai no registro civil”, esclareceu o especialista.</p>
+            
+            <p>A escolha pela adoção unilateral neste caso foi justificada pela ausência paterna e pelo desejo da adolescente de consolidar legalmente o vínculo exclusivo com o padrasto. Além disso, a decisão seguiu as diretrizes do Estatuto da Criança e do Adolescente (ECA), permitindo a adoção sem a necessidade de inscrição do padrasto nos cadastros formais de adoção.</p>
+            
+           <h2>Precedente para novas decisões</h2>
+
+           <p> “A sentença reafirma que ser pai ou mãe não se resume à genética, mas sim ao cuidado e à construção de laços afetivos. Isso acompanha a transformação das estruturas familiares e protege juridicamente aqueles que, de fato, exercem a função parental”, concluiu.</p>
+
+           <p>O caso foi julgado no processo nº 1001112-92.2024.8.26.0180.</p>
+
+        </article>
+           ">
+           <img src="../imagens/adocao.jpg" alt="Imagem da notícia">
+           <h2 class="blog-title">Justiça de São Paulo reconhece adoção unilateral de padrasto e reforça vínculo afetivo</h2>
+           <p class="blog-summary">A decisão levou em conta a ausência do pai biológico e o forte laço afetivo entre o padrasto e a adolescente, além de pareceres favoráveis do Ministério Público e de estudos sociais e psicológicos. O caso destaca a tendência do Direito das Famílias de priorizar a afetividade em relação à biologia e garante maior segurança jurídica à jovem.</p>
+           <p class="blog-meta">Fonte: Fonte: IBDFAM - Instituto Brasileiro de Direito de família - Data: 13/02/2025</p>
+           <a href="#" class="read-more" onclick="openNews(this)">Leia mais</a>
+     
+       
+       
+
+
+          
+            <!-- Continue adicionando as outras notícias aqui seguindo o mesmo padrão -->
+        </div>
+    </div>
+
+    <!-- Página de notícia completa -->
+    <!-- Página de notícia completa -->
+<div class="news-page" id="news-page">
+    <div class="container">
+        <a href="#" id="back-to-home">← Voltar</a>
+        <h1 id="news-title"></h1>
+        <p id="news-content"></p>
+    </div>
+</div>
+
+<a href="../index.html" target="_self" style="text-decoration: none;"><button type="button" class="btn-inicio">Inicio</button></a>
+
+<script>
+    function openNews(element) {
+        const card = element.closest('.blog-card');
+        const title = card.getAttribute('data-title');
+        const content = card.getAttribute('data-content');
+
+        // Esconde a página inicial e mostra a notícia completa
+        document.querySelector('.container').style.display = 'none';
+        document.querySelector('.news-page').style.display = 'block';
+
+        // Define o conteúdo da notícia com HTML
+        document.getElementById('news-title').textContent = title;
+        document.getElementById('news-content').innerHTML = content;
+    }
+
+    document.getElementById('back-to-home').onclick = function() {
+        // Mostra a página inicial
+        document.querySelector('.container').style.display = 'block';
+        // Esconde a página da notícia
+        document.querySelector('.news-page').style.display = 'none';
+    };
+</script>
+
+</body>
+</html>

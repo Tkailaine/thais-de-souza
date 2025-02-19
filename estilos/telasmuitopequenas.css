@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+.logo img{
+    width: 140px;
+}
+
+.text-container{
+  width: 80%;
+}
+
+.text-container h2{
+    font-size: 1.5em;
+  }
+  
+  .text-container p{
+    font-size: 1em;
+  }
+  
+
+.iarea{
+margin: auto;
+width: 30px;
+height: 30px;
+}
+
+.chamada-acao{
+padding: 0px 20px 20px 20px;
+}
+
+.card{
+    width: 300px;
+    height: 480px;
+    
+  }
+
+.ft-advogado{
+    width: 300px;
+}
+
+.txt-advogado ul h1{
+    font-size: 1.2em;
+}
+
+.form input,
+.form textarea,
+.form button {
+
+  width: 150px;
+ 
+
+}
+
+.btn-nome{
+    margin-top: 20px;
+}
