@@ -26,15 +26,17 @@ height: 30px;
 .chamada-acao{
 padding: 0px 20px 20px 20px;
 }
-
+.cv-advogado{
+  gap: 10px;
+}
 .card{
-    width: 300px;
-    height: 480px;
+    width: 250px;
+    height: 400px;
     
   }
 
 .ft-advogado{
-    width: 300px;
+    width: 250px;
 }
 
 .txt-advogado ul h1{
