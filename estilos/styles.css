@@ -401,7 +401,7 @@ cursor: pointer;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.199);
   color: white;
   border: none;
   padding: 15px;
