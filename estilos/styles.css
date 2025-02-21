@@ -445,6 +445,10 @@ cursor: pointer;
   padding: 50px 0px;
 }
 
+.txt-inventario h2{
+  margin-bottom: 10px;
+}
+
 .imagem-destaque{
   display: none;
   width: 60%;
