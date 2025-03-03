@@ -1,264 +1,409 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
+      /* Estilo global */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding-top: 80px;
+}
 
-        .container {
-            width: 90%;
+/* Menu com fundo transparente por padrão */
+header.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0) 0%, rgba(190, 190, 190, 0) 90%);
+    color: white;
+    z-index: 1000;
+  
+    transition: background-image 0.5s ease; /* Transição suave para o gradiente */
+    background-image: linear-gradient(45deg, #ffffff 30%, #bebebb 100%); 
+    background-size: 100% 100%; /* Preenche toda a área do menu com o gradiente */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    color: black;
+  }
+  
+  /* Quando o menu não estiver com fundo transparente */
+  header.navbar.scrolled {
+    background-image: linear-gradient(45deg, #ffffff 30%, #bebebb 100%); 
+    background-size: 100% 100%; /* Preenche toda a área do menu com o gradiente */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    color: black;
+  }
+  
+  /* Cor dos links quando o menu ganhar fundo */
+  header.navbar.scrolled nav.menu ul li a {
+    color: #cc9865; /* Cor quando o menu tem fundo */
+  }
+  
+  header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .logo img {
+    width: 230px;
+  }
+  
+  nav.menu .close-btn {
+    display: block;
+  }
+  
+  nav.menu {
+    display: flex;
+  }
+  
+  nav.menu ul {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+  }
+  
+  nav.menu ul li a {
+    text-decoration: none;
+    color: #cc9865; /* Cor inicial dos links */
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+  
+  nav.menu ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background:  #cc9865;
+    transition: width 0.3s ease;
+  }
+  
+  nav.menu ul li a:hover::after {
+    width: 100%;
+  }
+  
+  nav.menu ul li a:hover {
+    color: #cc9865;
+  }
+  
+  /* Botão de menu (Hamburger) */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+  }
+  
+  .menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    transition: all 0.3s ease;
+  }
+  
+  /* Efeitos no botão */
+  .menu-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+  
+  /* Botão de fechar no menu */
+  nav.menu .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    display: none;
+    z-index: 1001;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: flex;
+    }
+  
+    nav.menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      height: 100vh;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.5s ease;
+    }
+  
+    nav.menu.active {
+      left: 0;
+    }
+  
+    nav.menu ul {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    nav.menu ul li {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeIn 0.5s ease forwards;
+    }
+  
+    nav.menu ul li:nth-child(1) {
+      animation-delay: 0.3s;
+    }
+  
+    nav.menu ul li:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+  
+    nav.menu ul li:nth-child(3) {
+      animation-delay: 0.7s;
+    }
+  
+    nav.menu ul li:nth-child(4) {
+      animation-delay: 0.9s;
+    }
+  
+    /* Mostrar o botão de fechar no menu ativo */
+    nav.menu .close-btn {
+      display: block;
+    }
+  }
+  
+  /* Animação de fade-in */
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .btn-whatsapp{
+    border: 2px solid white;
+    background-color: transparent;
+    color: white;
+    border-radius: 10px;
+    width: 100px;
+    height: 35px;
+    font-family: var(--fonte-destaque);
+    cursor: pointer;
+    display: block;
+    margin: 0px;
+    font-weight: 600;
+
+  }
+
+  .btn-whatsapp:hover{
+    background-color: #cc9865;;
+    transition-duration: 1s;
+    color: white;
+    border: 2px solid #cc9865;;
+  }
+
+  .container {
             max-width: 1200px;
-            margin: auto;
-            padding: 20px;
+            margin: 70px auto;
         }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .blog-card {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
+        .blog {
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
         }
-
-        .blog-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .blog-card img {
-            width: 100%;
-            height: auto;
+        .card-blog {
+            width: 300px;
+            background: white;
             border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
         }
-
-        .blog-title {
-            font-size: 1.2rem;
-            color: #333;
-            margin: 15px 0 10px;
+        .card-blog:hover {
+            transform: scale(1.05);
         }
-
-        .blog-summary {
-            color: #666;
-            margin-bottom: 15px;
+        .card-blog img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
         }
-
-        .read-more {
+        .news-content {
+            padding: 15px;
+        }
+        .news-meta {
+            font-size: 12px;
+            color: #777;
+        }
+        .news-title {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .news-summary {
+            font-size: 14px;
+            color: #555;
+        }
+        .news-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #cc9865;
             text-decoration: none;
-            color: #007BFF;
-            font-weight: bold;
-            margin-top: auto;
-            align-self: flex-start;
-        }
-
-        .pagination {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .pagination a {
-            text-decoration: none;
-            margin: 0 10px;
-            color: #007BFF;
             font-weight: bold;
         }
-
-        .pagination a:hover {
+        .news-link:hover {
             text-decoration: underline;
         }
-
-        .news-page {
-            display: none;
-        }
-
-        .news-page h1 {
-            color: #333;
-            margin-top: 20px;
-        }
-
-        .news-page p {
-            color: #555;
-            line-height: 1.8;
-        }
-
         @media (max-width: 768px) {
-            .blog-grid {
-                grid-template-columns: 1fr 1fr;
+            .blog {
+                flex-direction: column;
+                align-items: center;
             }
         }
-
-        @media (max-width: 480px) {
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .btn-inicio{
-            display: block;
-            border: none;
-            width: 120px;
-            height: 30px;
-            border-radius: 10px;
-            color: white;
-            font-size: 1.2em;
-            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.178);
-            background-color: #007BFF;
-            margin: 50px auto;
-            cursor: pointer;
-        }
-
-        .btn-inicio:hover{
-            background-color: #022d5c;
-            transition-duration: 0.5s;
+        a{
+          text-decoration: none;
         }
     </style>
 </head>
 <body>
+  <header class="navbar">
     <div class="container">
-        <h1>Notícias</h1><div id="news-container" class="blog-grid">
-        <!-- Grid de notícias --><div class="blog-card" data-title="Câmara aprova projeto que impede penhora de bens essenciais para pessoas com deficiência" 
-                 data-content="
-                <article>
-                <p>A Câmara dos Deputados aprovou, nesta terça-feira (18), o Projeto de Lei 3987/2023, que proíbe a penhora de bens essenciais para garantir a dignidade das pessoas com deficiência. O projeto, de autoria do deputado Duarte Jr. (PSB-MA), modifica o Código de Processo Civil (CPC) e assegura a proteção de veículos, equipamentos e outros bens considerados indispensáveis, mesmo quando registrados no nome do representante legal da pessoa com deficiência.</p>
-                 
-             
-                 <p>A relatora da matéria, deputada Geovania de Sá (PSDB-SC), apresentou um substitutivo que manteve a maior parte do texto elaborado pelo deputado Márcio Jerry (PCdoB-MA) na Comissão de Defesa dos Direitos das Pessoas com Deficiência. No entanto, uma alteração importante foi feita: o novo texto exclui a previsão de que a proteção se estenda a bens registrados em nome de qualquer membro da entidade familiar da pessoa com deficiência.</p>
-                 
-                 <p>Segundo a relatora, essa ampliação poderia abrir margem para fraudes à execução, permitindo que pessoas sem deficiência registrassem bens em nome de familiares apenas para evitar a penhora. “A ideia é garantir a proteção da dignidade das pessoas com deficiência sem criar brechas para que a legislação seja utilizada de maneira indevida”, explicou Geovania de Sá.</p>
-                 
-                <p>Com a aprovação na Câmara, o projeto segue agora para análise no Senado Federal. Caso seja aprovado e sancionado, passará a valer em todo o território nacional, reforçando a proteção dos direitos das pessoas com deficiência e garantindo sua qualidade de vida sem o risco de perderem bens essenciais por dívidas judiciais.</p>
-                 
-                
-                </article>
-                ">
-                <img src="../imagens/penhorar.jpg" alt="Imagem da notícia">
-                <h2 class="blog-title">Câmara aprova projeto que impede penhora de bens essenciais para pessoas com deficiência</h2>
-                <p class="blog-summary">A proposta protege veículos, equipamentos e outros itens essenciais, mesmo quando registrados em nome do representante legal da pessoa com deficiência. </p>
-                <p class="blog-meta">Fonte: IBDFAM - Instituto Brasileiro de Direito de família - Data: 19/02/2025</p>
-                <a href="#" class="read-more" onclick="openNews(this)">Leia mais</a>
-            </div>
-
-            
-           
-           
-            
-
-            <div class="blog-card" data-title="Tribunal de Justiça de São Paulo nega restituição a mulher vítima de golpe virtual" 
-            data-content="
-        <article>
-            <p>A 38ª Câmara de Direito Privado do Tribunal de Justiça de São Paulo (TJSP) negou o pedido de uma mulher que buscava a restituição de R$ 5 mil perdidos em um golpe cibernético. A vítima realizou a transferência via Pix após visualizar um anúncio de veículo em uma plataforma de vendas online e negociar com os supostos vendedores por meio de um aplicativo de mensagens.</p>
-
-            
-            <p>Após perceber que havia sido enganada e não conseguir mais contato com os anunciantes, a mulher solicitou ao banco a devolução do valor enviado. No entanto, seu pedido foi negado tanto pela instituição financeira quanto pela Justiça.</p>
-
-           <p>Ao julgar o recurso, a desembargadora Silvana Malandrino Mollo afirmou que não houve falha na prestação do serviço bancário. Ela destacou que o banco apenas processou a transferência, sem intermediar a negociação entre as partes. “A modalidade de pagamento Pix não está condicionada à existência de um prévio negócio jurídico, e, não tendo ocorrido sob a intermediação do banco, a instituição financeira não possui meios para constatar eventuais vícios da contratação que originou o pagamento”, pontuou a relatora.</p>
-
-  
-            <p>A decisão foi acompanhada pelos desembargadores Spencer Almeida Ferreira e Anna Paula Dias da Costa, em votação unânime. O entendimento do tribunal reforça a necessidade de cautela por parte dos consumidores ao realizar transações financeiras no ambiente digital.</p>
-
-            <p>O caso foi julgado sob a Apelação nº 1131213-69.2024.8.26.0100.</p>
-
-        </article>
-
-           ">
-                <img src="../imagens/golpe.jpg" alt="Imagem da notícia">
-                <h2 class="blog-title">Tribunal de Justiça de São Paulo nega restituição a mulher vítima de golpe virtual
-
-                </h2>
-                <p class="blog-summary">A consumidora transferiu R$ 5 mil via Pix para a compra de um veículo anunciado em plataforma online, mas descobriu que se tratava de uma fraude. O tribunal entendeu que o banco não teve participação na negociação e que a simples intermediação da transferência não caracteriza falha na prestação de serviço.</p>
-                <p class="blog-meta">Fonte: TJSP - Data: 19/02/2025</p>
-                <a href="#" class="read-more" onclick="openNews(this)">Leia mais</a>
-            </div> 
-            
-            
-            <div class="blog-card" data-title="Justiça de São Paulo reconhece adoção unilateral de padrasto e reforça vínculo afetivo"
-            data-content="
-
-            <article>
-        
-            <p>A Justiça de São Paulo concedeu a um padrasto o direito de adotar unilateralmente sua enteada, formalizando juridicamente o vínculo afetivo construído ao longo dos anos. A decisão foi proferida pela 2ª Vara da Comarca de Espírito Santo do Pinhal, vinculada ao Tribunal de Justiça do Estado de São Paulo (TJSP), e considerou determinantes fatores como a ausência do pai biológico e o desejo da adolescente de ter o padrasto como único pai no registro civil.</p>
-            
-          
-            <p>A sentença baseou-se em estudos sociais e psicológicos que comprovaram a forte relação entre padrasto e enteada. Além disso, o Ministério Público manifestou-se favoravelmente à adoção, e o pai biológico não se opôs ao pedido, facilitando a tramitação do processo.</p>
-            
-            <p>De acordo com o advogado Bruno Freitas, que atuou no caso e integra o Instituto Brasileiro de Direito de Família (IBDFAM), a decisão reforça o reconhecimento legal de vínculos afetivos dentro das novas estruturas familiares. “A sentença reconhece e legaliza uma realidade já existente no convívio familiar. Ela também proporciona segurança jurídica, garantindo direitos sucessórios, previdenciários e familiares à jovem”, afirmou.</p>
-            
-            <h2>Diferença entre adoção unilateral e paternidade socioafetiva</h2>
-          
-            <p>Freitas explicou que a adoção unilateral difere do reconhecimento da paternidade socioafetiva, pois extingue o vínculo com o pai biológico. “Enquanto a paternidade socioafetiva adicionaria o nome do padrasto sem retirar o do genitor biológico, a adoção unilateral substitui completamente esse vínculo, tornando o adotante o único pai no registro civil”, esclareceu o especialista.</p>
-            
-            <p>A escolha pela adoção unilateral neste caso foi justificada pela ausência paterna e pelo desejo da adolescente de consolidar legalmente o vínculo exclusivo com o padrasto. Além disso, a decisão seguiu as diretrizes do Estatuto da Criança e do Adolescente (ECA), permitindo a adoção sem a necessidade de inscrição do padrasto nos cadastros formais de adoção.</p>
-            
-           <h2>Precedente para novas decisões</h2>
-
-           <p> “A sentença reafirma que ser pai ou mãe não se resume à genética, mas sim ao cuidado e à construção de laços afetivos. Isso acompanha a transformação das estruturas familiares e protege juridicamente aqueles que, de fato, exercem a função parental”, concluiu.</p>
-
-           <p>O caso foi julgado no processo nº 1001112-92.2024.8.26.0180.</p>
-
-        </article>
-           ">
-           <img src="../imagens/adocao.jpg" alt="Imagem da notícia">
-           <h2 class="blog-title">Justiça de São Paulo reconhece adoção unilateral de padrasto e reforça vínculo afetivo</h2>
-           <p class="blog-summary">A decisão levou em conta a ausência do pai biológico e o forte laço afetivo entre o padrasto e a adolescente, além de pareceres favoráveis do Ministério Público e de estudos sociais e psicológicos. O caso destaca a tendência do Direito das Famílias de priorizar a afetividade em relação à biologia e garante maior segurança jurídica à jovem.</p>
-           <p class="blog-meta">Fonte: Fonte: IBDFAM - Instituto Brasileiro de Direito de família - Data: 13/02/2025</p>
-           <a href="#" class="read-more" onclick="openNews(this)">Leia mais</a>
-     
-       
-       
-
-
-          
-            <!-- Continue adicionando as outras notícias aqui seguindo o mesmo padrão -->
-        </div>
+      <a href="../index.html">
+        <div class="logo"><img src="../imagens/logo.png" alt="Ronaldo Lima"></div>
+      </a>
+      <button class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <nav class="menu" id="menu">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#atuacoes">Áreas de Atuação</a></li>
+          <li style="display: none;"><a href="#escritorio">Escritório</a></li>
+          <li><a href="../#cv-advogado">Sobre</a></li>
+          <li><a href="../blog/blog.html">Informativos</a></li>
+        </ul>
+        <button class="close-btn" id="closeMenu">&times;</button>
+      </nav>
+      <a href="https://wa.link/4jk3jg" target="_blank"><button class="btn-whatsapp">Entre em contato</button></a>
     </div>
+</header>
 
-    <!-- Página de notícia completa -->
-    <!-- Página de notícia completa -->
-<div class="news-page" id="news-page">
-    <div class="container">
-        <a href="#" id="back-to-home">← Voltar</a>
-        <h1 id="news-title"></h1>
-        <p id="news-content"></p>
-    </div>
+<div class="container">
+  <h1 style="text-align:center; margin-bottom:20px;">Todas as Notícias</h1>
+  <div class="blog" id="newsContainer">
+      <!-- Os cards serão adicionados aqui dinamicamente -->
+  </div>
 </div>
+    
 
-<a href="../index.html" target="_self" style="text-decoration: none;"><button type="button" class="btn-inicio">Inicio</button></a>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+    console.log("JavaScript carregado com sucesso!");
 
-<script>
-    function openNews(element) {
-        const card = element.closest('.blog-card');
-        const title = card.getAttribute('data-title');
-        const content = card.getAttribute('data-content');
+    const menuToggle = document.getElementById("menuToggle");
+    const menu = document.getElementById("menu");
+    const closeMenu = document.getElementById("closeMenu");
+    const menuLinks = document.querySelectorAll("#menu a");
 
-        // Esconde a página inicial e mostra a notícia completa
-        document.querySelector('.container').style.display = 'none';
-        document.querySelector('.news-page').style.display = 'block';
-
-        // Define o conteúdo da notícia com HTML
-        document.getElementById('news-title').textContent = title;
-        document.getElementById('news-content').innerHTML = content;
+    if (menuToggle && menu) {
+        menuToggle.addEventListener("click", () => {
+            console.log("Menu aberto");
+            menu.classList.add("active");
+        });
+    } else {
+        console.error("Erro: Elementos do menu não encontrados!");
     }
 
-    document.getElementById('back-to-home').onclick = function() {
-        // Mostra a página inicial
-        document.querySelector('.container').style.display = 'block';
-        // Esconde a página da notícia
-        document.querySelector('.news-page').style.display = 'none';
-    };
-</script>
+    if (closeMenu && menu) {
+        closeMenu.addEventListener("click", () => {
+            console.log("Menu fechado");
+            menu.classList.remove("active");
+        });
+    }
 
+    if (menuLinks.length > 0 && menu) {
+        menuLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                console.log("Menu fechado ao clicar em um link");
+                menu.classList.remove("active");
+            });
+        });
+    }
+
+
+
+
+
+    // Evento de rolagem para verificar visibilidade (caso necessário)
+    if (typeof checkVisibility === "function") {
+        window.addEventListener("scroll", checkVisibility);
+        checkVisibility(); // Executa assim que a página carregar
+    } else {
+        console.warn("Função checkVisibility não encontrada.");
+    }
+
+});
+
+//cards
+const newsData = [
+            { img: "imagens/1.jpg", fonte: "BDFAM - Instituto Brasileiro de Direito de família", data: "19/02/2025", titulo: "Câmara aprova projeto que impede penhora de bens essenciais para pessoas com deficiência", resumo: "A proposta protege veículos, equipamentos e outros itens essenciais, mesmo quando registrados em nome do representante legal da pessoa com deficiência.", link: "1.html" },
+            { img: "imagens/2.jpg", fonte: "TJSP", data: "19/02/2025", titulo: "Tribunal de Justiça de São Paulo nega restituição a mulher vítima de golpe virtual", resumo: "A consumidora transferiu R$ 5 mil via Pix para a compra de um veículo anunciado em plataforma online, mas descobriu que se tratava de uma fraude. O tribunal entendeu que o banco não teve participação na negociação e que a simples intermediação da transferência não caracteriza falha na prestação de serviço.", link: "3.html" },
+            { img: "imagens/3.jpg", fonte: "BDFAM - Instituto Brasileiro de Direito de família", data: "13/02/2025", titulo: "Justiça de São Paulo reconhece adoção unilateral de padrasto e reforça vínculo afetivo", resumo: "A decisão levou em conta a ausência do pai biológico e o forte laço afetivo entre o padrasto e a adolescente, além de pareceres favoráveis do Ministério Público e de estudos sociais e psicológicos. O caso destaca a tendência do Direito das Famílias de priorizar a afetividade em relação à biologia e garante maior segurança jurídica à jovem.", link: "2.html" }
+        ];
+
+        // Ordena as notícias por data (mais recente primeiro)
+        newsData.sort((a, b) => {
+            const dateA = new Date(a.data.split("/").reverse().join("-"));
+            const dateB = new Date(b.data.split("/").reverse().join("-"));
+            return dateB - dateA;
+        });
+
+        const newsContainer = document.getElementById("newsContainer");
+
+        newsData.forEach(news => {
+            const card = document.createElement("div");
+            card.classList.add("card-blog");
+            card.innerHTML = `
+                <img src="${news.img}" alt="${news.titulo}">
+                <div class="news-content">
+                    <p class="news-meta">Fonte: ${news.fonte} | Data: ${news.data}</p>
+                    <h2 class="news-title">${news.titulo}</h2>
+                    <p class="news-summary">${news.resumo}</p>
+                    <a href="${news.link}" class="news-link">Leia mais</a>
+                </div>
+            `;
+            newsContainer.appendChild(card);
+        });
+  
+    </script>
 </body>
 </html>
